@@ -1,0 +1,63 @@
+{% extends 'homebase.html' %}
+{% block title %} Contact us-{{ setting.title }} {% endblock title %}
+{% block keywords %} {{ setting.keywords }} {% endblock keywords %}
+{% block sidebar %} {% include 'sidebar.html' %}  {% endblock sidebar %}
+{% block body %}
+
+	<!-- BREADCRUMB -->
+    <div id="breadcrumb" xmlns="http://www.w3.org/1999/html">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Contact</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+    <!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+					<div class="col-md-4">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Contact Form</h3>
+                                {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                                {% endif %}
+
+							</div>
+                            <form id="checkout-form" class="clearfix" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                            <input type="submit" value="SEND MESSAGE">
+                            </form>
+						</div>
+					</div>
+
+					<div class="col-md-8">
+						<div class="shiping-methods">
+							<div class="section-title">
+								<h4 class="title">Contact Information </h4>
+							</div>
+							<div >
+                                {{ setting.contact|safe }}
+
+							</div>
+
+						</div>
+
+                    </div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+{% endblock body %}
